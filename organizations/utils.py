@@ -18,8 +18,9 @@ def create_organization(user, name, slug=None, is_active=None,
     """
     org_model = kwargs.pop('model', None) or kwargs.pop('org_model', None) or Organization
     kwargs.pop('org_user_model', None)  # Discard deprecated argument
-    org_user_model = org_model.organization_users.related.model
-    org_owner_model = org_model.owner.related.model
+
+    org_user_model = org_model.organization_users.related.related_model
+    org_owner_model = org_model.owner.related.related_model
 
     if org_defaults is None:
         org_defaults = {}
